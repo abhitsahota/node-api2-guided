@@ -1,3 +1,6 @@
+// create and export an express app with its middleware
+
+
 const express = require('express')
 const server = express()
 

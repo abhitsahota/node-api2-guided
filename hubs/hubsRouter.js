@@ -1,5 +1,4 @@
-// create server and
-
+// router object for all /api/hubs call/handlers/middleware/endpoint
 
 const express = require('express')
 const Hubs = require('./hubs-model')
@@ -7,17 +6,17 @@ const shortid = require('shortid')
 
 const router = express.Router()
 
-server.use(express.json())
+router.use(express.json())
 
 let hubs = []
 let lessons = []
 
 
-server.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.json({message: 'hello'})
 })
 
-server.post('/api/hubs/', (req, res) => {
+router.post('/', (req, res) => {
     const hubInfo = req.body
     hubs.push(hubInfo)
 
@@ -27,11 +26,11 @@ server.post('/api/hubs/', (req, res) => {
 })
 
 
-server.get('/api/hubs/', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json(hubs)
 })
 
-server.delete('/api/hubs/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params
 
     const found = hubs.find(item => item.id === id )
@@ -43,7 +42,7 @@ server.delete('/api/hubs/:id', (req, res) => {
     }
 })
 
-server.patch('/api/hubs/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
     const { id } = req.params
     const changes = req.body
 
@@ -56,7 +55,7 @@ server.patch('/api/hubs/:id', (req, res) => {
     }
 })
 
-server.put('/api/hubs/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params
     const changes = req.body
 
